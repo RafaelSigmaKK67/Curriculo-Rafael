@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <script>document.documentElement.classList.add('js');</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rafael Raunan da Silva — Currículo & Portfólio</title>
+  <meta name="description" content="Currículo digital de Rafael Raunan da Silva — Suporte Técnico em T.I, Programação Web e Automação Industrial. São Miguel do Oeste/SC." />
+  <meta name="author" content="Rafael Raunan da Silva" />
+  <meta name="theme-color" content="#070b14" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Rafael Raunan da Silva — Currículo & Portfólio" />
+  <meta property="og:description" content="Suporte Técnico em T.I • Programação Web • Automação Industrial" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+
+  <!-- Favicon (SVG inline) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2322d3ee'/%3E%3Cstop offset='1' stop-color='%238b5cf6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='%23070b14'/%3E%3Ctext x='50' y='68' font-family='Arial,sans-serif' font-size='52' font-weight='bold' text-anchor='middle' fill='url(%23g)'%3ERS%3C/text%3E%3C/svg%3E" />
+
+  <!-- Fontes self-hosted (pré-carregadas) -->
+  <link rel="preload" href="assets/fonts/Inter-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/SpaceGrotesk-var.woff2" as="font" type="font/woff2" crossorigin />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Barra de progresso de scroll -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- Fundo decorativo -->
+  <div class="bg-decor" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="bg-blob bg-blob--1"></div>
+    <div class="bg-blob bg-blob--2"></div>
+    <div class="bg-blob bg-blob--3"></div>
+  </div>
+
+  <!-- ============ NAVBAR ============ -->
+  <header class="nav" id="navbar">
+    <div class="container nav__inner">
+      <a href="#inicio" class="nav__logo" aria-label="Voltar ao início">
+        <span class="nav__logo-mark">RS</span>
+        <span class="nav__logo-text">Rafael<span class="accent">.dev</span></span>
+      </a>
+
+      <nav class="nav__menu" id="navMenu" aria-label="Navegação principal">
+        <a href="#inicio" class="nav__link is-active">Início</a>
+        <a href="#sobre" class="nav__link">Sobre</a>
+        <a href="#habilidades" class="nav__link">Habilidades</a>
+        <a href="#formacao" class="nav__link">Formação</a>
+        <a href="#experiencia" class="nav__link">Experiência</a>
+        <a href="#idiomas" class="nav__link">Idiomas</a>
+        <a href="#contato" class="nav__link nav__link--cta">Contato</a>
+      </nav>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="inicio">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <p class="hero__hello reveal">👋 Olá, eu sou</p>
+          <h1 class="hero__name reveal">Rafael Raunan<br /><span class="gradient-text">da Silva</span></h1>
+
+          <p class="hero__role reveal">
+            <span class="hero__role-prefix">&gt;_</span>
+            <span id="typewriter" class="hero__typewriter">Suporte Técnico em T.I</span><span class="hero__cursor" aria-hidden="true">|</span>
+          </p>
+
+          <p class="hero__bio reveal">
+            Estudante de tecnologia apaixonado por resolver problemas — atuando com
+            <strong>suporte técnico</strong>, <strong>programação web</strong> e
+            <strong>automação industrial</strong>.
+          </p>
+
+          <div class="hero__chips reveal">
+            <span class="chip">📍 São Miguel do Oeste/SC</span>
+            <span class="chip">💼 Suporte T.I na ADEHASC</span>
+            <span class="chip">🎓 Técnico em Informática &amp; Automação</span>
+          </div>
+
+          <div class="hero__actions reveal">
+            <a href="#contato" class="btn btn--primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              Fale comigo
+            </a>
+            <a href="https://www.linkedin.com/in/rafael-raunan-da-silva-18225740b/" target="_blank" rel="noopener noreferrer" class="btn btn--outline">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <div class="hero__visual reveal" aria-hidden="true">
+          <div class="code-card">
+            <div class="code-card__bar">
+              <span class="dot dot--red"></span>
+              <span class="dot dot--yellow"></span>
+              <span class="dot dot--green"></span>
+              <span class="code-card__title">rafael.js</span>
+            </div>
+            <pre class="code-card__body"><code><span class="c-kw">const</span> <span class="c-var">rafael</span> = {
+  <span class="c-prop">nome</span>: <span class="c-str">'Rafael Raunan da Silva'</span>,
+  <span class="c-prop">base</span>: <span class="c-str">'São Miguel do Oeste/SC'</span>,
+  <span class="c-prop">foco</span>: [
+    <span class="c-str">'Suporte Técnico'</span>,
+    <span class="c-str">'Programação Web'</span>,
+    <span class="c-str">'Automação Industrial'</span>
+  ],
+  <span class="c-prop">status</span>: <span class="c-str">'aberto a oportunidades'</span> ✅
+};</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <a href="#sobre" class="hero__scroll" aria-label="Rolar para a seção Sobre">
+        <span class="hero__scroll-mouse"><span></span></span>
+      </a>
+    </section>
+
+    <!-- ============ SOBRE ============ -->
+    <section class="section" id="sobre">
+      <div class="container">
+        <header class="section__header reveal">
+          <span class="section__tag">01 · Sobre</span>
+          <h2 class="section__title">Objetivo <span class="gradient-text">profissional</span></h2>
+        </header>
+
+        <div class="about">
+          <div class="about__text reveal">
+            <p>
+              Busco uma oportunidade na área de <strong>Tecnologia da Informação</strong> —
+              especialmente em <strong>suporte técnico</strong>, <strong>programação web</strong> e
+              <strong>automação industrial</strong> — para aplicar meus conhecimentos, desenvolver
+              novas habilidades e contribuir com soluções que melhorem processos, organização e
+              produtividade da empresa.
+            </p>
+            <p>
+              Aos 17 anos, já concilio dois cursos técnicos com atuação profissional em T.I,
+              unindo a base prática do dia a dia de suporte com a formação em desenvolvimento
+              web e automação.
+            </p>
+          </div>
+
+          <ul class="about__facts reveal">
+            <li class="fact-card">
+              <span class="fact-card__icon">🎂</span>
+              <div><strong>17 anos</strong><span>Jovem talento</span></div>
+            </li>
+            <li class="fact-card">
+              <span class="fact-card__icon">📍</span>
+              <div><strong>São Miguel do Oeste/SC</strong><span>Localização</span></div>
+            </li>
+            <li class="fact-card">
+              <span class="fact-card__icon">💼</span>
+              <div><strong>Desde 2023</strong><span>Atuando em T.I</span></div>
+            </li>
+            <li class="fact-card">
+              <span class="fact-card__icon">🎓</span>
+              <div><strong>2 cursos técnicos</strong><span>Em andamento</span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HABILIDADES ============ -->
+    <section class="section section--alt" id="habilidades">
+      <div class="container">
+        <header class="section__header reveal">
+          <span class="section__tag">02 · Habilidades</span>
+          <h2 class="section__title">Qualificações &amp; <span class="gradient-text">competências</span></h2>
+        </header>
+
+        <div class="skills-grid">
+          <article class="skill-card reveal">
+            <div class="skill-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <h3>Programação para Web</h3>
+            <p>Criação de páginas e aplicações para a web com foco em código limpo e funcional.</p>
+          </article>
+
+          <article class="skill-card reveal">
+            <div class="skill-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h3>Desenvolvimento para Web</h3>
+            <p>Construção de interfaces e soluções digitais modernas, responsivas e acessíveis.</p>
+          </article>
+
+          <article class="skill-card reveal">
+            <div class="skill-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <h3>Suporte Técnico / T.I</h3>
+            <p>Atendimento, diagnóstico e resolução de problemas de hardware, software e sistemas.</p>
+          </article>
+
+          <article class="skill-card reveal">
+            <div class="skill-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </div>
+            <h3>Manutenção e Suporte</h3>
+            <p>Manutenção preventiva e corretiva de equipamentos e apoio à infraestrutura.</p>
+          </article>
+
+          <article class="skill-card reveal">
+            <div class="skill-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <h3>Gestão Administrativa</h3>
+            <p>Organização de rotinas, processos e documentos com formação pelo SENAC.</p>
+          </article>
+
+          <article class="skill-card reveal">
+            <div class="skill-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M6 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M18 22a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </div>
+            <h3>Redes Sociais / Marketing</h3>
+            <p>Criação de conteúdo e presença digital para divulgação de marcas e projetos.</p>
+          </article>
+
+          <article class="skill-card reveal">
+            <div class="skill-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
+            </div>
+            <h3>Design Gráfico</h3>
+            <p>Criação de peças visuais, identidade e materiais para mídias digitais.</p>
+          </article>
+
+          <article class="skill-card skill-card--highlight reveal">
+            <div class="skill-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <h3>Automação Industrial</h3>
+            <p>Em formação técnica pelo SENAI, com foco em processos e sistemas industriais.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FORMAÇÃO ============ -->
+    <section class="section" id="formacao">
+      <div class="container">
+        <header class="section__header reveal">
+          <span class="section__tag">03 · Formação</span>
+          <h2 class="section__title">Formação <span class="gradient-text">acadêmica</span></h2>
+        </header>
+
+        <div class="timeline">
+          <article class="timeline__item reveal">
+            <div class="timeline__dot" aria-hidden="true"></div>
+            <div class="timeline__card">
+              <div class="timeline__meta">
+                <span class="badge badge--progress">Cursando</span>
+                <span class="timeline__period">2023 — 2026</span>
+              </div>
+              <h3>Técnico em Automação Industrial</h3>
+              <p class="timeline__org">SENAI — Serviço Nacional de Aprendizagem Industrial</p>
+            </div>
+          </article>
+
+          <article class="timeline__item reveal">
+            <div class="timeline__dot" aria-hidden="true"></div>
+            <div class="timeline__card">
+              <div class="timeline__meta">
+                <span class="badge badge--progress">Cursando</span>
+                <span class="timeline__period">2023 — 2026</span>
+              </div>
+              <h3>Técnico em Informática e Programação para Web</h3>
+              <p class="timeline__org">E.E.B São João Batista</p>
+            </div>
+          </article>
+
+          <article class="timeline__item reveal">
+            <div class="timeline__dot" aria-hidden="true"></div>
+            <div class="timeline__card">
+              <div class="timeline__meta">
+                <span class="badge badge--done">Certificado</span>
+                <span class="timeline__period">2023</span>
+              </div>
+              <h3>Assistente Administrativo</h3>
+              <p class="timeline__org">SENAC — Serviço Nacional de Aprendizagem Comercial</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIÊNCIA ============ -->
+    <section class="section section--alt" id="experiencia">
+      <div class="container">
+        <header class="section__header reveal">
+          <span class="section__tag">04 · Experiência</span>
+          <h2 class="section__title">Experiência <span class="gradient-text">profissional</span></h2>
+        </header>
+
+        <article class="xp-card reveal">
+          <div class="xp-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <div class="xp-card__content">
+            <div class="xp-card__meta">
+              <span class="badge badge--live"><span class="badge__pulse" aria-hidden="true"></span>Atualmente</span>
+              <span class="timeline__period">2023 — Presente</span>
+            </div>
+            <h3>Suporte Técnico em T.I</h3>
+            <p class="xp-card__org">ADEHASC — Associação para o Desenvolvimento Habitacional Sustentável de SC</p>
+            <p class="xp-card__desc">
+              Atuação na área de suporte técnico em T.I, apoiando o funcionamento da
+              tecnologia e dos sistemas utilizados pela associação no dia a dia.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ IDIOMAS ============ -->
+    <section class="section" id="idiomas">
+      <div class="container">
+        <header class="section__header reveal">
+          <span class="section__tag">05 · Idiomas</span>
+          <h2 class="section__title">Idiomas &amp; <span class="gradient-text">comunicação</span></h2>
+        </header>
+
+        <div class="lang-grid">
+          <article class="lang-card reveal">
+            <span class="lang-card__flag" aria-hidden="true">🇧🇷</span>
+            <h3>Português</h3>
+            <span class="lang-card__level">Nativo</span>
+            <div class="lang-card__bar"><span style="--level: 100%"></span></div>
+          </article>
+
+          <article class="lang-card reveal">
+            <span class="lang-card__flag" aria-hidden="true">🇺🇸</span>
+            <h3>Inglês</h3>
+            <span class="lang-card__level">Básico</span>
+            <div class="lang-card__bar"><span style="--level: 35%"></span></div>
+          </article>
+
+          <article class="lang-card reveal">
+            <span class="lang-card__flag" aria-hidden="true">🇪🇸</span>
+            <h3>Espanhol</h3>
+            <span class="lang-card__level">Básico</span>
+            <div class="lang-card__bar"><span style="--level: 35%"></span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTATO ============ -->
+    <section class="section section--alt" id="contato">
+      <div class="container">
+        <header class="section__header reveal">
+          <span class="section__tag">06 · Contato</span>
+          <h2 class="section__title">Vamos <span class="gradient-text">conversar?</span></h2>
+          <p class="section__subtitle">
+            Estou em busca de novas oportunidades. Me chame por qualquer um dos canais abaixo. 🚀
+          </p>
+        </header>
+
+        <div class="contact-grid">
+          <a href="https://wa.me/5549991034493" target="_blank" rel="noopener noreferrer" class="contact-card reveal">
+            <div class="contact-card__icon contact-card__icon--whats">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            </div>
+            <div>
+              <h3>WhatsApp</h3>
+              <p>(49) 99103-4493</p>
+            </div>
+            <span class="contact-card__arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a href="mailto:rafaelrauna@gmail.com" class="contact-card reveal">
+            <div class="contact-card__icon contact-card__icon--mail">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <h3>E-mail</h3>
+              <p>rafaelrauna@gmail.com</p>
+            </div>
+            <span class="contact-card__arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a href="tel:+5549991034493" class="contact-card reveal">
+            <div class="contact-card__icon contact-card__icon--phone">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <h3>Telefone</h3>
+              <p>(49) 99103-4493</p>
+            </div>
+            <span class="contact-card__arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a href="https://www.linkedin.com/in/rafael-raunan-da-silva-18225740b/" target="_blank" rel="noopener noreferrer" class="contact-card reveal">
+            <div class="contact-card__icon contact-card__icon--linkedin">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </div>
+            <div>
+              <h3>LinkedIn</h3>
+              <p>rafael-raunan-da-silva</p>
+            </div>
+            <span class="contact-card__arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year">2026</span> Rafael Raunan da Silva — São Miguel do Oeste/SC</p>
+      <p class="footer__made">Feito com <span aria-hidden="true">💙</span> e muito <code>&lt;code/&gt;</code></p>
+    </div>
+  </footer>
+
+  <!-- Botão voltar ao topo -->
+  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
