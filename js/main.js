@@ -122,6 +122,15 @@
   if (backToTop) {
     backToTop.addEventListener('click', function () {
       window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+      // O botão some no topo; move o foco para o início da página
+      var logo = document.querySelector('.nav__logo');
+      if (logo) {
+        try {
+          logo.focus({ preventScroll: true });
+        } catch (e) {
+          logo.focus();
+        }
+      }
     });
   }
 
@@ -139,6 +148,14 @@
       }
     });
 
+    // No fim da página, ativa a última seção (pode ser mais curta que a viewport)
+    if (
+      sections.length &&
+      scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2
+    ) {
+      currentId = sections[sections.length - 1].id;
+    }
+
     navLinks.forEach(function (link) {
       var isActive = link.getAttribute('href') === '#' + currentId;
       link.classList.toggle('is-active', isActive);
@@ -155,6 +172,10 @@
       navToggle.classList.remove('is-open');
       navToggle.setAttribute('aria-expanded', 'false');
       navToggle.setAttribute('aria-label', 'Abrir menu');
+      // Devolve o foco ao botão se ele estava dentro do menu (agora oculto)
+      if (navMenu.contains(document.activeElement)) {
+        navToggle.focus();
+      }
     };
 
     navToggle.addEventListener('click', function () {
@@ -171,7 +192,7 @@
     });
 
     document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape') {
+      if (event.key === 'Escape' && navMenu.classList.contains('is-open')) {
         closeMenu();
       }
     });

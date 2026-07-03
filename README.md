@@ -33,6 +33,8 @@ Landing page de currículo/portfólio de **Rafael Raunan da Silva** — Suporte 
 └── vercel.json     # Configuração de deploy (clean URLs + headers)
 ```
 
+As fontes (Inter e Space Grotesk) são carregadas via Google Fonts.
+
 ## 🚀 Rodando localmente
 
 Não precisa de build — é só abrir o `index.html` no navegador, ou servir a pasta:
