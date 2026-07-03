@@ -2,7 +2,7 @@
 
 Landing page de currículo/portfólio de **Rafael Raunan da Silva** — Suporte Técnico em T.I, Programação Web e Automação Industrial (São Miguel do Oeste/SC).
 
-🔗 **Deploy:** [curriculo-rafael na Vercel](https://curriculo-rafael.vercel.app)
+🔗 **Deploy:** [curriculo-rafael-two.vercel.app](https://curriculo-rafael-two.vercel.app)
 
 ## 🛠 Tecnologias
 
