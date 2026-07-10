@@ -1888,46 +1888,53 @@ html:not(.js) .timeline__dot {
   scale: 1;
 }
 
-/* ---------- Acessibilidade: reduzir movimento ---------- */
+/* ---------- Acessibilidade: reduzir movimento ----------
+   O site fica estático mas completo (partículas viram imagem parada).
+   A classe .motion-forced no <html> — controlada pelo botão de play na faixa
+   de competências — permite ao visitante LIGAR as animações mesmo com o
+   sistema pedindo movimento reduzido. */
 @media (prefers-reduced-motion: reduce) {
-  html {
+  html:not(.motion-forced) {
     scroll-behavior: auto;
   }
 
-  *,
-  *::before,
-  *::after {
+  html:not(.motion-forced) *,
+  html:not(.motion-forced) *::before,
+  html:not(.motion-forced) *::after {
     animation-duration: 0.001s !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001s !important;
   }
 
-  .js .reveal {
+  html.js:not(.motion-forced) .reveal {
     opacity: 1;
     transform: none;
     animation: none;
   }
 
-  .glitch::before,
-  .glitch::after {
+  html:not(.motion-forced) .glitch::before,
+  html:not(.motion-forced) .glitch::after {
     display: none;
   }
 
-  .timeline::before {
+  html:not(.motion-forced) .timeline::before {
     transform: scaleY(1);
   }
 
-  .timeline__dot {
+  html:not(.motion-forced) .timeline__dot {
     scale: 1;
   }
 
-  .marquee__track {
+  html:not(.motion-forced) .marquee__track {
     animation: none;
   }
+}
 
-  #bgCanvas {
-    display: none;
-  }
+/* Animações ligadas à força: o conteúdo já foi todo revelado de uma vez,
+   então não re-executa o reveal (evita a página "piscar" ao clicar em play) */
+html.motion-forced.js .reveal {
+  opacity: 1;
+  animation: none;
 }
 
   </style>
@@ -2442,16 +2449,20 @@ html:not(.js) .timeline__dot {
   var motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   var prefersReducedMotion = motionQuery.matches;
   var isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
-  var isMotionPaused = false; // controlado pelo botão de pausa (WCAG 2.2.2)
 
-  // Preenchidos pelo bloco do canvas; usados pelo botão de pausa
+  // Estado único das animações: começa desligado se o sistema pede movimento
+  // reduzido, mas o botão de play/pause permite ligar ou desligar a qualquer
+  // momento (WCAG 2.2.2 nos dois sentidos)
+  var animationsOn = !motionQuery.matches;
+
+  // Preenchidos pelo bloco do canvas; usados pelo botão de play/pause
   var particlesStart = null;
   var particlesStop = null;
 
   /* ---------- Rede de partículas no fundo (canvas) ---------- */
   var canvas = document.getElementById('bgCanvas');
 
-  if (canvas && canvas.getContext && !prefersReducedMotion) {
+  if (canvas && canvas.getContext) {
     var ctx = canvas.getContext('2d');
     var particles = [];
     var rafId = null;
@@ -2479,7 +2490,8 @@ html:not(.js) .timeline__dot {
       }
     };
 
-    var drawFrame = function () {
+    // Desenha um quadro da rede (sem agendar o próximo)
+    var renderFrame = function () {
       var w = window.innerWidth;
       var h = window.innerHeight;
       ctx.clearRect(0, 0, w, h);
@@ -2514,12 +2526,16 @@ html:not(.js) .timeline__dot {
         }
       }
 
-      rafId = window.requestAnimationFrame(drawFrame);
+    };
+
+    var drawLoop = function () {
+      renderFrame();
+      rafId = window.requestAnimationFrame(drawLoop);
     };
 
     var startParticles = function () {
       if (rafId === null) {
-        rafId = window.requestAnimationFrame(drawFrame);
+        rafId = window.requestAnimationFrame(drawLoop);
       }
     };
 
@@ -2532,12 +2548,20 @@ html:not(.js) .timeline__dot {
 
     sizeCanvas();
     buildParticles();
-    startParticles();
+    if (animationsOn) {
+      startParticles();
+    } else {
+      // Com animações desligadas a rede fica visível, só que estática
+      renderFrame();
+    }
 
     var resizeTimer;
     var lastCanvasWidth = window.innerWidth;
     window.addEventListener('resize', function () {
       sizeCanvas(); // imediato: evita o bitmap esticado até o debounce
+      if (!animationsOn) {
+        renderFrame();
+      }
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(function () {
         sizeCanvas();
@@ -2547,11 +2571,14 @@ html:not(.js) .timeline__dot {
           lastCanvasWidth = window.innerWidth;
           buildParticles();
         }
+        if (!animationsOn) {
+          renderFrame();
+        }
       }, 180);
     });
 
     var canResume = function () {
-      return !document.hidden && !motionQuery.matches && !isMotionPaused;
+      return !document.hidden && animationsOn;
     };
 
     // Pausa quando a aba não está visível (economiza bateria)
@@ -2562,17 +2589,6 @@ html:not(.js) .timeline__dot {
         startParticles();
       }
     });
-
-    // Reage se o usuário ativar "reduzir movimento" com a página aberta
-    if (motionQuery.addEventListener) {
-      motionQuery.addEventListener('change', function (event) {
-        if (event.matches) {
-          stopParticles();
-        } else if (canResume()) {
-          startParticles();
-        }
-      });
-    }
 
     particlesStart = function () {
       if (canResume()) {
@@ -2675,7 +2691,7 @@ html:not(.js) .timeline__dot {
   var typewriterPause = null;
   var typewriterResume = null;
 
-  if (typewriterEl && !prefersReducedMotion) {
+  if (typewriterEl) {
     var roleIndex = 0;
     var charIndex = roles[0].length;
     var deleting = true;
@@ -2685,9 +2701,8 @@ html:not(.js) .timeline__dot {
     var HOLD_DELAY = 2200;
 
     var tick = function () {
-      // Congela no nome completo se o usuário ativou "reduzir movimento"
-      // ou pausou as animações pelo botão
-      if (motionQuery.matches || isMotionPaused) {
+      // Congela no nome completo quando as animações estão desligadas
+      if (!animationsOn) {
         typewriterEl.textContent = roles[roleIndex];
         return;
       }
@@ -2729,18 +2744,9 @@ html:not(.js) .timeline__dot {
       typeTimer = setTimeout(tick, HOLD_DELAY);
     };
 
-    // Congela também se "reduzir movimento" for ativado com a página aberta
-    if (motionQuery.addEventListener) {
-      motionQuery.addEventListener('change', function (event) {
-        if (event.matches) {
-          typewriterPause();
-        } else if (!isMotionPaused) {
-          typewriterResume();
-        }
-      });
+    if (animationsOn) {
+      typeTimer = setTimeout(tick, HOLD_DELAY);
     }
-
-    typeTimer = setTimeout(tick, HOLD_DELAY);
   }
 
   /* ---------- Contadores animados ---------- */
@@ -2759,7 +2765,7 @@ html:not(.js) .timeline__dot {
       return str + suffix;
     };
 
-    if (prefersReducedMotion) {
+    if (!animationsOn) {
       el.textContent = format(target);
       return;
     }
@@ -2898,7 +2904,7 @@ html:not(.js) .timeline__dot {
     }
 
     // Parallax leve nos blobs do fundo
-    if (!motionQuery.matches) {
+    if (animationsOn) {
       parallaxEls.forEach(function (el) {
         var factor = parseFloat(el.getAttribute('data-parallax')) || 0;
         el.style.translate = '0 ' + (scrollY * factor).toFixed(1) + 'px';
@@ -3005,34 +3011,57 @@ html:not(.js) .timeline__dot {
     });
   }
 
-  /* ---------- Botão pausar/retomar animações (WCAG 2.2.2) ---------- */
+  /* ---------- Botão ligar/pausar animações (WCAG 2.2.2) ---------- */
   var motionToggle = document.getElementById('motionToggle');
+
+  var setAnimations = function (on) {
+    animationsOn = on;
+    document.documentElement.classList.toggle('motion-paused', !on);
+    // "Forçado": usuário ligou as animações mesmo com o sistema pedindo
+    // movimento reduzido — a classe libera as animações de CSS
+    document.documentElement.classList.toggle('motion-forced', on && motionQuery.matches);
+
+    if (motionToggle) {
+      motionToggle.setAttribute('aria-pressed', String(!on));
+      motionToggle.setAttribute(
+        'aria-label',
+        on ? 'Pausar animações da página' : 'Ativar animações da página'
+      );
+    }
+
+    if (on) {
+      if (particlesStart) {
+        particlesStart();
+      }
+      if (typewriterResume) {
+        typewriterResume();
+      }
+    } else {
+      if (particlesStop) {
+        particlesStop();
+      }
+      if (typewriterPause) {
+        typewriterPause();
+      }
+    }
+  };
 
   if (motionToggle) {
     motionToggle.addEventListener('click', function () {
-      isMotionPaused = !isMotionPaused;
-      document.documentElement.classList.toggle('motion-paused', isMotionPaused);
-      motionToggle.setAttribute('aria-pressed', String(isMotionPaused));
-      motionToggle.setAttribute(
-        'aria-label',
-        isMotionPaused ? 'Retomar animações da página' : 'Pausar animações da página'
-      );
+      setAnimations(!animationsOn);
+    });
+  }
 
-      if (isMotionPaused) {
-        if (particlesStop) {
-          particlesStop();
-        }
-        if (typewriterPause) {
-          typewriterPause();
-        }
-      } else {
-        if (particlesStart) {
-          particlesStart();
-        }
-        if (typewriterResume && !motionQuery.matches) {
-          typewriterResume();
-        }
-      }
+  // Sistema com "reduzir movimento": começa pausado, mas com o botão de play
+  // disponível — o site fica estático porém completo, nunca "quebrado"
+  if (motionQuery.matches) {
+    setAnimations(false);
+  }
+
+  // Reage se a preferência do sistema mudar com a página aberta
+  if (motionQuery.addEventListener) {
+    motionQuery.addEventListener('change', function (event) {
+      setAnimations(!event.matches);
     });
   }
 
